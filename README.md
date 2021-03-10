@@ -1,4 +1,4 @@
-# Quasar App (praticando)
+# Quasar App (quasar-cli-example)
 
 A Quasar Framework app
 

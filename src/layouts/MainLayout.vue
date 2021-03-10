@@ -1,15 +1,21 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header>
+  <q-layout class="lHh Lpr lFf">
+    <q-header elevated class="style= bg-deep-purple">
+      <q-toolbar>
+        <q-toolbar-title> </q-toolbar-title>
+      </q-toolbar>
     </q-header>
+
     <q-page-container>
       <router-view />
     </q-page-container>
+    <div elevated class="col-md-12 col-lg-12 col-xs-12 col-sm-12 dark">
+
+    </div>
   </q-layout>
 </template>
 
 <script>
-
 const linksData = [
   {
     title: 'Docs',

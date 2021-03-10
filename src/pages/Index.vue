@@ -5,7 +5,7 @@
       @submit="onSubmit"
       @reset="onReset"
       ref="myForm"
-      class="row q-gutter-md flex flex-center"
+      class="row q-gutter-md flex flex-center full-width"
     >
       <q-input
         outlined
@@ -65,9 +65,49 @@
           <q-icon name="call" />
         </template>
       </q-input>
+      <q-input
+        outlined
+        color="deep-purple"
+        v-model="form.senha"
+        type="password"
+        label="Senha"
+        class="col-md-6 col-sm-12 col-xs-12"
+        :rules="[val => (val && val.length > 0) || 'Senha obrigatório']"
+      >
+        <template v-slot:prepend>
+          <q-icon name="lock" />
+        </template>
+      </q-input>
+      <q-input
+        outlined
+        color="deep-purple"
+        v-model="form.ConfirmarSenha"
+        type="password"
+        label="Confirmar senha"
+        class="col-md-6 col-sm-12 col-xs-12"
+        :rules="[val => (val === this.form.senha && val.length > 0) || 'Senhas diferentes!' ]"
+      >
+        <template v-slot:prepend>
+          <q-icon name="lock" />
+        </template>
+      </q-input>
       <q-select
         class="col-md-6 col-sm-12 col-xs-12"
         outlined
+        color="deep-purple"
+        v-model="form.se "
+        :options="optionsSexo"
+        label="Sexo"
+        emit-value
+        map-options
+        :rules="[
+          val => (val && val.length > 0) || 'Por favor informe o sexo!'
+        ]"
+      />
+      <q-select
+        class="col-md-6 col-sm-12 col-xs-12"
+        outlined
+        color="deep-purple"
         v-model="form.TipoPessoa"
         :options="optionsTipoPessoa"
         label="Tipo de pessoa"
@@ -76,16 +116,6 @@
         :rules="[
           val => (val && val.length > 0) || 'Tipo de Pessoa obrigatório'
         ]"
-      />
-      <span class="col-md-6 col-sm-12 col-xs-12 float-right q-pr-lg text-bold"
-        >Sexo</span
-      >
-      <q-option-group
-        :options="optionsSexo"
-        label="Sexo"
-        type="radio"
-        v-model="form.sexo"
-        class="col-md-6 col-sm-12 col-xs-12 float-right q-mr-lg"
       />
       <div class="col-md-6 col-sm-12 col-xs-12">
         <q-btn
@@ -100,7 +130,7 @@
           type="reset"
           color="deep-purple"
           flat
-          class="col-md-6 col-sm-12 col-xs-12 float-right q-mr-lg"
+          class="col-md- col-sm-12 col-xs-12 float-right q-mr-lg"
         />
       </div>
     </q-form>
@@ -116,6 +146,8 @@ export default {
         nome: '',
         idade: null,
         email: '',
+        senha: '',
+        ConfirmarSenha: '',
         telefone: '',
         TipoPessoa: '',
         sexo: 'NI'
@@ -125,7 +157,7 @@ export default {
         { label: 'Pessoa Jurídica', value: 'pj' }
       ],
       optionsSexo: [
-        { label: 'Não Informado', value: 'NI' },
+        { label: 'Não Informar', value: 'NI' },
         { label: 'Masculino', value: 'M' },
         { label: 'Feminino', value: 'F' }
       ]
@@ -151,6 +183,8 @@ export default {
         idade: null,
         email: '',
         telefone: '',
+        senha: '',
+        ConfirmarSenha: '',
         TipoPessoa: '',
         sexo: 'NI'
       }
